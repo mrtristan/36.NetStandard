@@ -1,12 +1,12 @@
 ﻿namespace Base36Library.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using System;
 
-    [TestClass]
+    [TestFixture]
     public class Decoding
     {
-        [TestMethod]
+        [Test]
         public void Zeroes()
         {
             Assert.AreEqual(0, Base36.Decode("0"));
@@ -26,44 +26,44 @@
             Assert.AreEqual(-1, Base36.Decode("-001"));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [Test]
         public void Null()
         {
-            Base36.Decode(null);
+            Assert.Throws<ArgumentNullException>(() => Base36.Decode(null));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void Empty()
         {
-            Base36.Decode(string.Empty);
+            Assert.Throws<ArgumentException>(() => Base36.Decode(string.Empty));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void Invalid()
         {
-            Base36.Decode("invali d");
+            Assert.Throws<ArgumentException>(() => Base36.Decode("invali d"));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void PositiveOverflow()
         {
-            Base36.Decode("1Y2P0IJ32E8E8");
+            Assert.Throws<ArgumentException>(() => Base36.Decode("1Y2P0IJ32E8E8"));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void NegativeOverflow()
         {
-            Base36.Decode("-1Y2P0IJ32E8E9");
+            Assert.Throws<ArgumentException>(() => Base36.Decode("-1Y2P0IJ32E8E9"));
         }
 
-        [TestMethod]
+        [Test]
         public void Negative()
         {
             Assert.AreEqual(-13330L, Base36.Decode("-AAA"));
             Assert.AreEqual(-1833836359370, Base36.Decode("-NEGATIVE"));
         }
 
-        [TestMethod]
+        [Test]
         public void MixedCases()
         {
             Assert.AreEqual(Base36.Decode("aaa"), Base36.Decode("AAA"));
@@ -72,7 +72,7 @@
             Assert.AreEqual(Base36.Decode("tESt"), Base36.Decode("tESt"));
         }
 
-        [TestMethod]
+        [Test]
         public void MultiplesOf10()
         {
             Assert.AreEqual(10L, Base36.Decode("A"));
@@ -95,7 +95,7 @@
             Assert.AreEqual(1000000000000000000L, Base36.Decode("7LIEEXZX4KXS"));
         }
 
-        [TestMethod]
+        [Test]
         public void MultiplesOf36()
         {
             Assert.AreEqual(36L, Base36.Decode("10"));
@@ -111,19 +111,19 @@
             Assert.AreEqual(131621703842267136L, Base36.Decode("100000000000"));
         }
 
-        [TestMethod]
+        [Test]
         public void LongMinValue()
         {
             Assert.AreEqual(long.MinValue, Base36.Decode("-1Y2P0IJ32E8E8"));
         }
 
-        [TestMethod]
+        [Test]
         public void LongMaxValue()
         {
             Assert.AreEqual(long.MaxValue, Base36.Decode("1Y2P0IJ32E8E7"));
         }
 
-        [TestMethod]
+        [Test]
         public void SingleDigits()
         {
             #region 0 to Z
@@ -168,7 +168,7 @@
             #endregion
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleDigits()
         {
             #region 10 to 1Z

@@ -1,18 +1,18 @@
 ﻿namespace Base36Library.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class Encoding
     {
-        [TestMethod]
+        [Test]
         public void Negative()
         {
             Assert.AreEqual("-AAA", Base36.Encode(-13330L));
             Assert.AreEqual("-NEGATIVE", Base36.Encode(-1833836359370L));
         }
 
-        [TestMethod]
+        [Test]
         public void MultiplesOf10()
         {
             Assert.AreEqual("A", Base36.Encode(10L));
@@ -35,7 +35,7 @@
             Assert.AreEqual("7LIEEXZX4KXS", Base36.Encode(1000000000000000000L));
         }
 
-        [TestMethod]
+        [Test]
         public void MultiplesOf36()
         {
             Assert.AreEqual("10", Base36.Encode(36L));
@@ -51,19 +51,19 @@
             Assert.AreEqual("100000000000", Base36.Encode(131621703842267136L));
         }
 
-        [TestMethod]
+        [Test]
         public void LongMinValue()
         {
             Assert.AreEqual("-1Y2P0IJ32E8E8", Base36.Encode(long.MinValue));
         }
 
-        [TestMethod]
+        [Test]
         public void LongMaxValue()
         {
             Assert.AreEqual("1Y2P0IJ32E8E7", Base36.Encode(long.MaxValue));
         }
 
-        [TestMethod]
+        [Test]
         public void SingleDigits()
         {
             #region 0 to 35
@@ -108,7 +108,7 @@
             #endregion
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleDigits()
         {
             #region 10 to 1Z

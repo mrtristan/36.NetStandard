@@ -1,11 +1,11 @@
 ﻿namespace Base36Library.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class WouldOverflow
     {
-        [TestMethod]
+        [Test]
         public void Would()
         {
             Assert.IsTrue(Base36.WouldOverflow("1Y2P0IJ32E8E8"));
@@ -13,7 +13,7 @@
             Assert.IsTrue(Base36.WouldOverflow("SOMEWHATLONGSTRING"));
         }
 
-        [TestMethod]
+        [Test]
         public void Wouldnt()
         {
             Assert.IsFalse(Base36.WouldOverflow("0"));

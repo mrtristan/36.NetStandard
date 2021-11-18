@@ -1,30 +1,30 @@
 ﻿namespace Base36Library.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using System;
 
-    [TestClass]
+    [TestFixture]
     public class Comparing
     {
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [Test]
         public void Null()
         {
-            Base36.Compare("ABC", null);
+            Assert.Throws<ArgumentNullException>(() => Base36.Compare("ABC", null));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void Empty()
         {
-            Base36.Compare("ABC", string.Empty);
+            Assert.Throws<ArgumentException>(() => Base36.Compare("ABC", string.Empty));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void Invalid()
         {
-            Base36.Compare("ABC", "invali d");
+            Assert.Throws<ArgumentException>(() => Base36.Compare("ABC", "invali d"));
         }
 
-        [TestMethod]
+        [Test]
         public void EqualPositive()
         {
             Assert.AreEqual(0, Base36.Compare("A", "A"));
@@ -47,7 +47,7 @@
             Assert.AreEqual(0, Base36.Compare("7LIEEXZX4KXS", "7LIEEXZX4KXS"));
         }
 
-        [TestMethod]
+        [Test]
         public void EqualNegative()
         {
             Assert.AreEqual(0, Base36.Compare("-A", "-A"));
@@ -70,7 +70,7 @@
             Assert.AreEqual(0, Base36.Compare("-7LIEEXZX4KXS", "-7LIEEXZX4KXS"));
         }
 
-        [TestMethod]
+        [Test]
         public void PositiveComparison()
         {
             Assert.AreEqual(1, Base36.Compare("A", "10"));
@@ -98,7 +98,7 @@
             Assert.AreEqual(-1, Base36.Compare("100000000000", "RCN1HSSIGHS"));
         }
 
-        [TestMethod]
+        [Test]
         public void NegativeComparison()
         {
             Assert.AreEqual(-1, Base36.Compare("-A", "-10"));
@@ -126,7 +126,7 @@
             Assert.AreEqual(1, Base36.Compare("-100000000000", "-RCN1HSSIGHS"));
         }
 
-        [TestMethod]
+        [Test]
         public void PositiveAndNegativeComparison()
         {
             Assert.AreEqual(1, Base36.Compare("-A", "10"));
