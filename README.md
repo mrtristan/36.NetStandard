@@ -1,3 +1,10 @@
+![](https://github.com/mrtristan/36.NetStandard/workflows/.NET%20Core/badge.svg)
+[![NuGet version (36.NetStandard)](https://img.shields.io/nuget/v/36.NetStandard.svg)](https://www.nuget.org/packages/36.NetStandard/)
+
+# 36.NetStandard
+> forked from https://github.com/tallesl/net-36
+
+
 <p align="center">
     <a href="#36">
         <img alt="logo" src="Assets/logo-200x200.png">
